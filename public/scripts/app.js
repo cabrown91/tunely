@@ -39,14 +39,25 @@ sampleAlbums.push({
 
 $(document).ready(function() {
   console.log('app.js loaded!');
-});
 
+  var source = $("#album-template").html();
+  var template = Handlebars.compile(source);
+
+  renderAlbum(sampleAlbums[0]);
 
 
 
 
 // this function takes a single album and renders it to the page
-function renderAlbum(album) {
-  console.log('rendering album:', album);
+  function renderAlbum(album) {
 
-}
+    console.log('rendering album:', album);
+    $("#albums").empty();
+
+    var albumHtml = template({ album: album });
+
+    $("#albums").append(albumHtml);
+
+  }
+
+});
