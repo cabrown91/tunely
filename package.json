@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/sf-wdi-labs/tunely#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bower": "^1.7.9",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "mongoose": "^4.6.0"
   }
 }

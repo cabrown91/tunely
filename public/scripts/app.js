@@ -25,6 +25,39 @@ $(document).ready(function() {
     });
     $(this).trigger("reset");
   });
+
+  $('#albums').on('click', '.add-song', function(e){
+    console.log('add-song clicked!');
+    var id = $(this).closest('.album').data('album-id');
+    console.log('id', id);
+
+    $('#songModal').data('album-id', id);
+    $('#songModal').modal();
+  });
+
+  $('#saveSong').on('click', function(e){
+    var songNameData = $('#songName').val();
+    var trackNumberData = $('#trackNumber').val();
+    var $albumId = $('#songModal').data('album-id');
+
+    $.ajax({
+      method: 'POST',
+      url: '/api/albums/' + $albumId + '/songs'  ,
+      data: {name: songNameData, trackNumber: trackNumberData} ,
+      success: createSongSuccess,
+      error: createSongError
+    });
+
+    function createSongSuccess(data) {
+      console.log(data);
+
+    }
+
+    function createSongError(err) {
+      console.log(err);
+    }
+
+  });
 });
 
 function renderMultipleAlbums(albums) {
